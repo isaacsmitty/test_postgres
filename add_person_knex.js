@@ -14,11 +14,12 @@ var knex = require('knex')({
 
 
 const input = process.argv.slice(2);
+const person = { first_name: input[0], last_name: input[1], birthdate: input[2] };
 
 knex('famous_people')
-  .insert({ first_name: input[0], last_name: input[1], birthdate: input[2] })
+  .insert(person)
   .asCallback(function(err, result) {
     if (err) return console.error(err);
-        console.log('Person Inserted');
+    console.log('Person Inserted');
         knex.destroy();
       });
